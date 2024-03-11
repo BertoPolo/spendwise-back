@@ -33,7 +33,10 @@ export class TransactionsService {
     return Math.random().toString(36).substring(2, 15);
   }
 
-  async update(id: string, updatedTransaction: any): Promise<any> {
+  async update(
+    id: string,
+    updatedTransaction: Transaction,
+  ): Promise<Transaction> {
     let transactions = await this.findAll();
     transactions = transactions.map((t) =>
       t.id === id ? { ...t, ...updatedTransaction } : t,

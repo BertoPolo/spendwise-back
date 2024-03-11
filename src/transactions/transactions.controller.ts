@@ -25,7 +25,7 @@ export class TransactionsController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() transactionData: any) {
+  update(@Param('id') id: string, @Body() transactionData: Transaction) {
     return this.transactionsService.update(id, transactionData);
   }
 
