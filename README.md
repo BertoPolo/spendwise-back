@@ -1,3 +1,5 @@
+# ChargeNest: Transaction Management Backend
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -19,54 +21,56 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+ChargeNest harnesses the power of the Nest framework, offering a robust TypeScript-based backend solution for transaction management. Designed to streamline the processing and monitoring of transactions, this starter repository equips developers with a pre-configured environment, simplifying initial setup and integration efforts.
 
-## Installation
+### Key features of ChargeNest include:
+
+<ul>
+  <li><b>Pre-configured Environment:</b> No need to fiddle with .env variables; we've got you covered with an already set up project.</li>
+ <li> <b>Real-time Updates:</b> Utilizes socket.io for live data transmission, ensuring that you're always in sync with the latest transaction states.</li>
+  <li><b>Task Scheduling and Queuing:</b> Leverage bullMQ for efficient job scheduling and management, optimizing your backend's processing capabilities. ( to be finished )</li>
+  <li><b>Email Notifications:</b> With nodemailer, sending out transaction updates or alerts via email is a breeze.</li>
+</ul>
+
+## Getting Started
+
+### Clone the repository
+
+To get started, clone the repository to your local machine:
+
+```bash
+$ git clone https://github.com/BertoPolo/charge-nest.git
+```
+
+### Install dependencies
+
+Navigate into the project directory and install the necessary dependencies:
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+### Running the app
+
+ChargeNest can be run in various modes depending on your development needs:
+
+- Development Mode:
+  Starts the application in development mode with hot reload enabled, allowing for real-time updates as you modify the code.
 
 ```bash
 # development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+- Watch Mode:
+  Runs the application in watch mode, automatically restarting the server upon file changes.
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ npm run start:dev
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
