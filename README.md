@@ -31,7 +31,7 @@ ChargeNest harnesses the power of the Nest framework, offering a robust TypeScri
 <ul>
   <li><b>Pre-configured Environment:</b> No need to fiddle with .env variables; we've got you covered with an already set up project.</li>
  <li> <b>Real-time Updates:</b> Utilizes socket.io for live data transmission, ensuring that you're always in sync with the latest transaction states.</li>
-  <li><b>Task Scheduling and Queuing:</b> Leverage bullMQ for efficient job scheduling and management, optimizing your backend's processing capabilities. ( to be finished )</li>
+  <li><b>Task Scheduling and Queuing:</b> Leverage bullMQ for efficient job scheduling and management, optimizing your backend's processing capabilities. <b>( to be finished )</b></li>
   <li><b>Email Notifications:</b> With nodemailer, sending out transaction updates or alerts via email is a breeze.</li>
 </ul>
 
@@ -61,7 +61,6 @@ ChargeNest can be run in various modes depending on your development needs:
   Starts the application in development mode with hot reload enabled, allowing for real-time updates as you modify the code.
 
 ```bash
-# development
 $ npm run start
 ```
 
