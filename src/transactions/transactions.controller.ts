@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
 import { Transaction } from './transactions.interface';
+import { emailQueue } from '../email/email.queue';
 
 @Controller('transactions')
 export class TransactionsController {
@@ -32,5 +33,18 @@ export class TransactionsController {
   @Delete(':id')
   delete(@Param('id') id: string) {
     return this.transactionsService.delete(id);
+  }
+}
+@Controller()
+export class AppController {
+  @Post('/send-email-test')
+  async sendEmailTest() {
+    await emailQueue.add('sendEmail', {
+      email: 'satiscopolo@gmail.com',
+      subject: 'Prueba de BullMQ y Nodemailer',
+      message: 'Si recibes esto, ¡la configuración funciona correctamente!',
+    });
+
+    return { message: 'Trabajo de envío de email encolado' };
   }
 }
