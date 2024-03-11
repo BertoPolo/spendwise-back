@@ -1,16 +1,19 @@
 import { Controller, Post } from '@nestjs/common';
-import { emailQueue } from './email.queue';
+import { EmailService } from './email.service';
+import { SendEmailDto } from './email.interface';
 
-@Controller()
+@Controller('email')
 export class EmailController {
-  @Post('/send-email')
-  async sendEmailTest() {
-    await emailQueue.add('sendEmail', {
-      email: 'satiscopolo@gmail.com',
-      subject: 'Prueba de BullMQ y Nodemailer',
-      message: 'test',
-    });
+  constructor(private readonly emailService: EmailService) {}
 
-    return { message: 'Trabajo de envío de email encolado' };
+  @Post('')
+  async sendEmail() {
+    const dto: SendEmailDto = {
+      from: { name: 'Carlos', address: 'info@chargevite.com' },
+      recipients: [{ name: 'John', address: 'admin@info.com' }],
+      subject: 'Warning',
+      html: '<p>Red numbers!</p>',
+    };
+    return await this.emailService.sendEmail(dto);
   }
 }
