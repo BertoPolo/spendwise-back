@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "description": "Coffee",
+    "amount": -3.5
+  },
+  {
+    "id": "2",
+    "description": "Freelance Project",
+    "amount": 500
+  },
+  {
+    "description": "Coffee",
+    "amount": -3.5,
+    "id": "xgr4rlo4dzc"
+  },
+  {
+    "description": "asd",
+    "amount": -3.5,
+    "id": "xewxx6s7kco"
+  }
+]
