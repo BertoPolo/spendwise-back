@@ -1,4 +1,6 @@
 import { Controller, Post } from '@nestjs/common';
+// import { InjectQueue } from '@nestjs/bullmq';
+// import { Queue } from 'bullmq';
 import { EmailService } from './email.service';
 import { SendEmailDto } from './email.interface';
 
@@ -15,5 +17,13 @@ export class EmailController {
       html: '<p>Red numbers!</p>',
     };
     return await this.emailService.sendEmail(dto);
+
+    // await this.emailQueue.add('sendEmail', dto);
+    // return { message: 'Email job enqueued' };
   }
+
+  //   @Post('transcode')
+  //   async transcode() {
+  //     return this.emailService.transcode();
+  //   }
 }

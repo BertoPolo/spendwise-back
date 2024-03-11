@@ -1,9 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import { SendEmailDto } from './email.interface';
+// import { Queue } from 'bullmq';
+// import { InjectQueue } from '@nestjs/bullmq';
 
 @Injectable()
 export class EmailService {
+  //   constructor(
+  //     @InjectQueue('transcode') private readonly transcodeQueue: Queue,
+  //   ) {}
+
+  //   async transcode() {
+  //     await this.transcodeQueue.add({
+  //       name: 'lala',
+  //     });
+  //   }
+
   emailTransport() {
     const transporter = nodemailer.createTransport({
       host: 'sandbox.smtp.mailtrap.io',
