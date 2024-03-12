@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import {
+  SubscribeMessage,
+  MessageBody,
   WebSocketGateway,
   WebSocketServer,
   OnGatewayConnection,
 } from '@nestjs/websockets';
+
 import { Server } from 'socket.io';
 import { TransactionsService } from './transactions.service';
 
@@ -18,12 +21,17 @@ export class TransactionsGateway implements OnGatewayConnection {
 
   constructor(private transactionsService: TransactionsService) {}
 
-  handleConnection(client: any) {
-    this.sendTransactionsToClient(client);
+  async sendTransactionsToAllClients() {
+    const transactions = await this.transactionsService.getTransactions();
+    this.server.emit('transactions', transactions);
   }
 
-  async sendTransactionsToClient(client: any) {
-    const transactions = await this.transactionsService.getTransactions();
-    client.emit('transactions', transactions);
+  handleConnection() {
+    this.sendTransactionsToAllClients();
+  }
+
+  @SubscribeMessage('transactions')
+  async handleAddTransaction(@MessageBody() transactionData: any) {
+    this.sendTransactionsToAllClients();
   }
 }
