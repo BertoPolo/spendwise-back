@@ -12,18 +12,9 @@ export class MyEvents implements OnModuleInit {
   @WebSocketServer()
   server: Server;
 
-  async getTransactions() {
-    const data = await fs.promises.readFile(this.dbPath, 'utf8');
-    return JSON.parse(data);
-  }
-
   onModuleInit() {
     this.server.on('connection', (socket) => {
       console.log('This user just conected: ', socket.id);
-      const getTotal = async () => {
-        const transactions = await this.getTransactions();
-        return transactions.reduce((acc, { amount }) => acc + amount, 0);
-      };
     });
   }
   @SubscribeMessage('newTransaction')

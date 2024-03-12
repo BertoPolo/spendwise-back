@@ -18,7 +18,7 @@ export class TransactionsService {
   }
 
   async create(transaction: Transaction): Promise<Transaction> {
-    const transactions = await this.findAll();
+    const transactions = this.findAll(); // why not await?
     transaction.id = this.generateUniqueId();
     transactions.push(transaction);
     fs.writeFileSync(
@@ -37,7 +37,7 @@ export class TransactionsService {
     id: string,
     updatedTransaction: Transaction,
   ): Promise<Transaction> {
-    let transactions = await this.findAll();
+    let transactions = this.findAll(); // why not await?
     transactions = transactions.map((t) =>
       t.id === id ? { ...t, ...updatedTransaction } : t,
     );
@@ -50,7 +50,7 @@ export class TransactionsService {
   }
 
   async delete(id: string): Promise<{ deleted: boolean; id: string }> {
-    let transactions = await this.findAll();
+    let transactions = this.findAll(); // why not await?
     const initialLength = transactions.length;
     transactions = transactions.filter((t) => t.id !== id);
     const wasDeleted = initialLength > transactions.length;
