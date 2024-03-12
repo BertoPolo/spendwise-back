@@ -28,8 +28,8 @@ export class EmailService {
     });
     return transporter;
   }
-  async sendEmail(dto: SendEmailDto) {
-    const { from, recipients, subject, html, placeholderReplacements } = dto;
+  async sendNegativeBalanceEmail(dto: SendEmailDto) {
+    const { from, recipients, subject, html } = dto;
 
     const transport = this.emailTransport();
 
@@ -38,7 +38,6 @@ export class EmailService {
       to: recipients,
       subject: subject,
       html: html,
-      placeholderReplacements: placeholderReplacements,
     };
 
     try {

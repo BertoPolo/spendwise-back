@@ -17,5 +17,10 @@
     "description": "Film",
     "amount": -22,
     "id": "f5f1nwfe2dk"
+  },
+  {
+    "description": "sad movement",
+    "amount": -500,
+    "id": "6oy4ofhgdad"
   }
 ]
