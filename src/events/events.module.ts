@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { MyEvents } from './events';
-// import { EventsController } from './events.controller';
-// import { EventsService } from './events.service';
+import { TransactionsService } from '../transactions/transactions.service';
+import { TransactionsGateway } from '../transactions/transactions.gateway';
 
 @Module({
-  // controllers: [EventsController],
-  providers: [MyEvents],
+  providers: [TransactionsGateway, TransactionsService],
 })
 export class EventsModule {}

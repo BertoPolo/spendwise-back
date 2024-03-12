@@ -10,6 +10,7 @@ export class TransactionsService {
     '../../data/transactions.json',
   );
 
+  // should i delete this function and only use the other?
   findAll(): Transaction[] {
     const transactions = JSON.parse(
       fs.readFileSync(this.transactionsFile, 'utf8'),
@@ -17,11 +18,21 @@ export class TransactionsService {
     return transactions;
   }
 
+  async getTransactions(): Promise<Transaction[]> {
+    try {
+      const data = await fs.promises.readFile(this.transactionsFile, 'utf8');
+      return JSON.parse(data);
+    } catch (error) {
+      console.error('Error reading transactions file:', error);
+      throw new Error('Failed to read transactions');
+    }
+  }
+
   async create(transaction: Transaction): Promise<Transaction> {
-    const transactions = this.findAll(); // why not await?
+    const transactions = await this.getTransactions();
     transaction.id = this.generateUniqueId();
     transactions.push(transaction);
-    fs.writeFileSync(
+    await fs.promises.writeFile(
       this.transactionsFile,
       JSON.stringify(transactions, null, 2),
       'utf8',
@@ -37,7 +48,7 @@ export class TransactionsService {
     id: string,
     updatedTransaction: Transaction,
   ): Promise<Transaction> {
-    let transactions = this.findAll(); // why not await?
+    let transactions = this.findAll(); // why do not await?
     transactions = transactions.map((t) =>
       t.id === id ? { ...t, ...updatedTransaction } : t,
     );
@@ -50,7 +61,7 @@ export class TransactionsService {
   }
 
   async delete(id: string): Promise<{ deleted: boolean; id: string }> {
-    let transactions = this.findAll(); // why not await?
+    let transactions = this.findAll(); // why do not await?
     const initialLength = transactions.length;
     transactions = transactions.filter((t) => t.id !== id);
     const wasDeleted = initialLength > transactions.length;
