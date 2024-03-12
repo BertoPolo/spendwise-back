@@ -12,5 +12,20 @@
   {
     "description": "Coffee",
     "amount": -3.5
+  },
+  {
+    "description": "Bike",
+    "amount": -100,
+    "id": "5g14j6ple6i"
+  },
+  {
+    "description": "Flight",
+    "amount": -77,
+    "id": "ui9s5ckrhi9"
+  },
+  {
+    "description": "Wallapop",
+    "amount": 300,
+    "id": "vzb1x5jwx6h"
   }
 ]
