@@ -27,7 +27,6 @@ export class TransactionsRepository {
 
   async create(transaction: Transaction): Promise<Transaction> {
     const transactions = await this.findAll();
-    transaction.id = Math.random().toString(36).substring(2, 15);
     transactions.push(transaction);
     await fs.writeFile(
       this.dbPath,

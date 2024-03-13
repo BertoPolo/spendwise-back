@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Transaction } from './entities/transactions.entity';
 import { TransactionsRepository } from './repositories/transactions.repository';
 import { EmailService } from 'src/email/email.service';
+import { CreateTransactionDto } from 'src/dto/create-transaction.dto';
 
 @Injectable()
 export class TransactionsService {
@@ -22,8 +23,15 @@ export class TransactionsService {
     return transaction;
   }
 
-  async createTransaction(transaction: Transaction): Promise<Transaction> {
-    return this.transactionsRepository.create(transaction);
+  async createTransaction(
+    createTransactionDto: CreateTransactionDto,
+  ): Promise<Transaction> {
+    const newTransaction = new Transaction();
+    newTransaction.id = Math.random().toString(36).substring(2, 15);
+    newTransaction.description = createTransactionDto.description;
+    newTransaction.amount = createTransactionDto.amount;
+
+    return this.transactionsRepository.create(newTransaction);
   }
 
   async updateTransaction(

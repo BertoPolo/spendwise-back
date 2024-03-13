@@ -27,5 +27,15 @@
     "description": "Wallapop",
     "amount": 300,
     "id": "vzb1x5jwx6h"
+  },
+  {
+    "id": "nmorsonm5k",
+    "description": "asd",
+    "amount": -3.5
+  },
+  {
+    "id": "tcdlfdzp9o",
+    "description": "dsd",
+    "amount": 22
   }
 ]
