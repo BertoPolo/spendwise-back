@@ -67,7 +67,7 @@ export class TransactionsService {
   }
   //modify update and delete functions
   async delete(id: string): Promise<{ deleted: boolean; id: string }> {
-    let transactions = this.findAll(); // why do not await?
+    let transactions = this.findAll();
     const initialLength = transactions.length;
     transactions = transactions.filter((t) => t.id !== id);
     const wasDeleted = initialLength > transactions.length;
@@ -78,6 +78,23 @@ export class TransactionsService {
     );
     return { deleted: wasDeleted, id };
   }
+
+  // async checkAndNotifyNegativeBalance() {
+  //   const transactions = await this.getTransactions();
+  //   const totalBalance = transactions.reduce(
+  //     (acc, transaction) => acc + transaction.amount,
+  //     0,
+  //   );
+
+  //   if (totalBalance < 0) {
+  //     await this.emailService.queueEmailToSend({
+  //       from: { name: 'AppBot', address: 'bot@chargevite.com' },
+  //       recipients: [{ name: 'Admin', address: 'admin@info.com' }],
+  //       subject: 'Warning',
+  //       html: '<p>Red numbers!</p>',
+  //     });
+  //   }
+  // }
 
   async checkAndNotifyNegativeBalance() {
     const transactions = await this.getTransactions();

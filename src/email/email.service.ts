@@ -1,21 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import { SendEmailDto } from './email.interface';
-// import { Queue } from 'bullmq';
-// import { InjectQueue } from '@nestjs/bullmq';
+import { emailQueue } from './email.queue';
+// import { Processor, WorkerHost, OnWorkerEvent } from '@nestjs/bullmq';
+// import { Job } from 'bullmq';
 
 @Injectable()
 export class EmailService {
-  //   constructor(
-  //     @InjectQueue('transcode') private readonly transcodeQueue: Queue,
-  //   ) {}
-
-  //   async transcode() {
-  //     await this.transcodeQueue.add({
-  //       name: 'lala',
-  //     });
-  //   }
-
   emailTransport() {
     const transporter = nodemailer.createTransport({
       host: 'sandbox.smtp.mailtrap.io',
@@ -29,6 +20,7 @@ export class EmailService {
     return transporter;
   }
   async sendNegativeBalanceEmail(dto: SendEmailDto) {
+    console.log('sendNegativeBalanceEmail');
     const { from, recipients, subject, html } = dto;
 
     const transport = this.emailTransport();
@@ -46,5 +38,9 @@ export class EmailService {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async queueEmailToSend(dto: SendEmailDto) {
+    await emailQueue.add('emailQueue', dto);
   }
 }
