@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "description": "Shoes fix",
+    "description": "Shoes fixing",
     "amount": -3.5
   },
   {
@@ -30,12 +30,7 @@
   },
   {
     "id": "nmorsonm5k",
-    "description": "asd",
-    "amount": -3.5
-  },
-  {
-    "id": "tcdlfdzp9o",
-    "description": "dsd",
-    "amount": 22
+    "description": "asda",
+    "amount": -101
   }
 ]

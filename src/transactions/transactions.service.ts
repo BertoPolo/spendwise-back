@@ -31,17 +31,22 @@ export class TransactionsService {
     newTransaction.description = createTransactionDto.description;
     newTransaction.amount = createTransactionDto.amount;
 
-    return this.transactionsRepository.create(newTransaction);
+    const createdTransaction =
+      await this.transactionsRepository.create(newTransaction);
+    await this.checkAndNotifyNegativeBalance();
+    return createdTransaction;
   }
 
   async updateTransaction(
     id: string,
     transactionUpdate: Transaction,
   ): Promise<Transaction> {
+    await this.checkAndNotifyNegativeBalance();
     return this.transactionsRepository.update(id, transactionUpdate);
   }
 
   async deleteTransaction(id: string): Promise<void> {
+    await this.checkAndNotifyNegativeBalance();
     await this.transactionsRepository.delete(id);
   }
 

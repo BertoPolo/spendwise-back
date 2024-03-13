@@ -10,6 +10,7 @@ import {
 import { TransactionsService } from './transactions.service';
 import { Transaction } from './entities/transactions.entity';
 import { CreateTransactionDto } from 'src/dto/create-transaction.dto';
+import { UpdateTransactionDto } from 'src/dto/update-transaction.dto';
 
 @Controller('transactions')
 export class TransactionsController {
@@ -35,9 +36,9 @@ export class TransactionsController {
   @Put('/:id')
   updateTransaction(
     @Param('id') id: string,
-    @Body() transaction: Transaction,
+    @Body() updateTransactionDto: UpdateTransactionDto,
   ): Promise<Transaction> {
-    return this.transactionsService.updateTransaction(id, transaction);
+    return this.transactionsService.updateTransaction(id, updateTransactionDto);
   }
 
   @Delete('/:id')

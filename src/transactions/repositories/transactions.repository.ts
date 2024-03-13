@@ -33,7 +33,6 @@ export class TransactionsRepository {
       JSON.stringify(transactions, null, 2),
       'utf8',
     );
-    // await this.checkAndNotifyNegativeBalance();
     return transaction;
   }
 
