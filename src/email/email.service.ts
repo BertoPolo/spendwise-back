@@ -20,7 +20,6 @@ export class EmailService {
     return transporter;
   }
   async sendNegativeBalanceEmail(dto: SendEmailDto) {
-    console.log('sendNegativeBalanceEmail');
     const { from, recipients, subject, html } = dto;
 
     const transport = this.emailTransport();
@@ -34,6 +33,8 @@ export class EmailService {
 
     try {
       const result = await transport.sendMail(options);
+      console.log('email sent with the function: sendNegativeBalanceEmail');
+
       return result;
     } catch (error) {
       console.error(error);
