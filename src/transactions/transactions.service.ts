@@ -41,13 +41,17 @@ export class TransactionsService {
     id: string,
     transactionUpdate: Transaction,
   ): Promise<Transaction> {
+    const updatedTransaction = await this.transactionsRepository.update(
+      id,
+      transactionUpdate,
+    );
     await this.checkAndNotifyNegativeBalance();
-    return this.transactionsRepository.update(id, transactionUpdate);
+    return updatedTransaction;
   }
 
   async deleteTransaction(id: string): Promise<void> {
-    await this.checkAndNotifyNegativeBalance();
     await this.transactionsRepository.delete(id);
+    await this.checkAndNotifyNegativeBalance();
   }
 
   async getTotal() {
