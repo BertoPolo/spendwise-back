@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { Transaction } from './entities/transaction.entity';
+import { Transaction } from './transaction.interface';
 import { EmailService } from '../email/email.service';
 
 @Injectable()

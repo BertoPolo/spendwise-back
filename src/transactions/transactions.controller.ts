@@ -8,7 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
-import { Transaction } from './entities/transaction.entity';
+import { Transaction } from './transaction.interface';
 
 @Controller('transactions')
 export class TransactionsController {
