@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import { SendEmailDto } from './email.interface';
-import { emailQueue } from './email.queue';
+// import { emailQueue } from './email.queue';
 // import { Processor, WorkerHost, OnWorkerEvent } from '@nestjs/bullmq';
 // import { Job } from 'bullmq';
 
@@ -41,7 +41,7 @@ export class EmailService {
     }
   }
 
-  async queueEmailToSend(dto: SendEmailDto) {
-    await emailQueue.add('emailQueue', dto);
-  }
+  // async queueEmailToSend(dto: SendEmailDto) {
+  //   await emailQueue.add('emailQueue', dto);
+  // }
 }
