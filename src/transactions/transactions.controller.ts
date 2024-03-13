@@ -1,36 +1,44 @@
 import {
   Controller,
+  Get,
   Post,
   Body,
-  Delete,
   Param,
-  Get,
-  Put,
+  Patch,
+  Delete,
 } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
-import { Transaction } from './transaction.interface';
+import { Transaction } from './entities/transactions.entity';
 
 @Controller('transactions')
 export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
   @Get()
-  getAll() {
-    return this.transactionsService.findAll();
+  getAllTransactions(): Promise<Transaction[]> {
+    return this.transactionsService.getTransactions();
+  }
+
+  @Get('/:id')
+  getTransactionById(@Param('id') id: string): Promise<Transaction> {
+    return this.transactionsService.getTransactionById(id);
   }
 
   @Post()
-  create(@Body() transactionData: Transaction) {
-    return this.transactionsService.create(transactionData);
+  createTransaction(@Body() transaction: Transaction): Promise<Transaction> {
+    return this.transactionsService.createTransaction(transaction);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() transactionData: Transaction) {
-    return this.transactionsService.update(id, transactionData);
+  @Patch('/:id')
+  updateTransaction(
+    @Param('id') id: string,
+    @Body() transaction: Transaction,
+  ): Promise<Transaction> {
+    return this.transactionsService.updateTransaction(id, transaction);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: string) {
-    return this.transactionsService.delete(id);
+  @Delete('/:id')
+  deleteTransaction(@Param('id') id: string): Promise<void> {
+    return this.transactionsService.deleteTransaction(id);
   }
 }
