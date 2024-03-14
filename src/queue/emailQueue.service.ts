@@ -1,4 +1,3 @@
-// src/queue/emailQueue.service.ts
 import Queue from 'bee-queue';
 import { EmailService } from 'src/email/email.service';
 
