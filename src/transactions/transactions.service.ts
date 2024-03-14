@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { Transaction } from './entities/transactions.entity';
 import { TransactionsRepository } from './repositories/transactions.repository';
-import { EmailService } from 'src/email/email.service';
-import { CreateTransactionDto } from 'src/dto/create-transaction.dto';
+import { EmailService } from '../email/email.service';
+import { CreateTransactionDto } from '../dto/create-transaction.dto';
+import { EmailQueueService } from '../queue/emailQueue.service';
 
 @Injectable()
 export class TransactionsService {
   constructor(
     private readonly transactionsRepository: TransactionsRepository,
     private readonly emailService: EmailService,
+    private readonly emailQueueService: EmailQueueService,
   ) {}
 
   async getTransactions(): Promise<Transaction[]> {
@@ -67,7 +69,7 @@ export class TransactionsService {
     );
 
     if (totalBalance < 0) {
-      this.emailService.sendNegativeBalanceEmail({
+      this.emailQueueService.addEmailJob({
         from: { name: 'AppBot', address: 'bot@chargevite.com' },
         recipients: [{ name: 'Admin', address: 'admin@info.com' }],
         subject: 'Warning',

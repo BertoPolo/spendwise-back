@@ -1,6 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import Queue from 'bee-queue';
-import { EmailService } from 'src/email/email.service';
+import { EmailService } from '../email/email.service';
+import { SendEmailDto } from '../email/interfaces/email.interface';
 
+@Injectable()
 export class EmailQueueService {
   private emailQueue: Queue;
 
@@ -23,7 +26,7 @@ export class EmailQueueService {
     });
   }
 
-  addEmailJob(emailJobData: any) {
+  addEmailJob(emailJobData: SendEmailDto) {
     this.emailQueue.createJob(emailJobData).save();
   }
 }

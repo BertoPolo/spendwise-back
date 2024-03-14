@@ -30,7 +30,6 @@ export class TransactionsGateway implements OnGatewayConnection {
   }
 
   @SubscribeMessage('transactions')
-  // async handleTransactions(@MessageBody() transactionData: any) {
   async handleTransactions() {
     this.sendTransactionsToAllClients();
   }

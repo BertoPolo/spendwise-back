@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
-// import { BullModule } from '@nestjs/bullmq';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TransactionsModule } from './transactions/transactions.module';
 import { EmailModule } from './email/email.module';
-// import { BullMQModule } from './bull/bull.module';
+import { QueueModule } from './queue/queue.module';
 
 @Module({
-  imports: [TransactionsModule, EmailModule],
+  imports: [TransactionsModule, EmailModule, QueueModule],
   controllers: [AppController],
   providers: [AppService],
 })

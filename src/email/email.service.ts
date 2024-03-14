@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import { SendEmailDto } from './email.interface';
+import { SendEmailDto } from './interfaces/email.interface';
 
 @Injectable()
 export class EmailService {
@@ -16,7 +16,7 @@ export class EmailService {
     });
     return transporter;
   }
-  async sendNegativeBalanceEmail(dto: SendEmailDto) {
+  sendNegativeBalanceEmail = async (dto: SendEmailDto) => {
     const { from, recipients, subject, html } = dto;
 
     const transport = this.emailTransport();
@@ -36,5 +36,5 @@ export class EmailService {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 }
