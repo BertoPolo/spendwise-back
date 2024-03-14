@@ -5,22 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TransactionsModule } from './transactions/transactions.module';
 import { EmailModule } from './email/email.module';
-import { EventsModule } from './events/events.module';
 // import { BullMQModule } from './bull/bull.module';
 
 @Module({
-  imports: [
-    TransactionsModule,
-    EmailModule,
-    EventsModule,
-    // BullModule.forRoot({
-    //   connection: { host: 'localhost', port: 6379 },
-    // }),
-    // BullModule.registerQueue({
-    //   name: 'emailQueue',
-    // }),
-    // BullMQModule,
-  ],
+  imports: [TransactionsModule, EmailModule],
   controllers: [AppController],
   providers: [AppService],
 })

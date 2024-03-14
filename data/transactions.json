@@ -1,13 +1,8 @@
 [
   {
     "id": "1",
-    "description": "Shoes fix",
+    "description": "Shoes fixing",
     "amount": -3.5
-  },
-  {
-    "id": "2",
-    "description": "Freelance Project",
-    "amount": 500
   },
   {
     "description": "Coffee",
@@ -27,5 +22,10 @@
     "description": "Wallapop",
     "amount": 300,
     "id": "vzb1x5jwx6h"
+  },
+  {
+    "id": "03t2pn3hetio",
+    "description": "Freelance Project",
+    "amount": 500
   }
 ]

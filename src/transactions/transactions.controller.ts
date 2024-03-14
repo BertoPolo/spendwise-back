@@ -1,36 +1,48 @@
 import {
   Controller,
+  Get,
   Post,
   Body,
-  Delete,
   Param,
-  Get,
+  Delete,
   Put,
 } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
-import { Transaction } from './transaction.interface';
+import { Transaction } from './entities/transactions.entity';
+import { CreateTransactionDto } from 'src/dto/create-transaction.dto';
+import { UpdateTransactionDto } from 'src/dto/update-transaction.dto';
 
 @Controller('transactions')
 export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
   @Get()
-  getAll() {
-    return this.transactionsService.findAll();
+  getAllTransactions(): Promise<Transaction[]> {
+    return this.transactionsService.getTransactions();
+  }
+
+  @Get('/:id')
+  getTransactionById(@Param('id') id: string): Promise<Transaction> {
+    return this.transactionsService.getTransactionById(id);
   }
 
   @Post()
-  create(@Body() transactionData: Transaction) {
-    return this.transactionsService.create(transactionData);
+  createTransaction(
+    @Body() createTransactionDto: CreateTransactionDto,
+  ): Promise<Transaction> {
+    return this.transactionsService.createTransaction(createTransactionDto);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() transactionData: Transaction) {
-    return this.transactionsService.update(id, transactionData);
+  @Put('/:id')
+  updateTransaction(
+    @Param('id') id: string,
+    @Body() updateTransactionDto: UpdateTransactionDto,
+  ): Promise<Transaction> {
+    return this.transactionsService.updateTransaction(id, updateTransactionDto);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: string) {
-    return this.transactionsService.delete(id);
+  @Delete('/:id')
+  deleteTransaction(@Param('id') id: string): Promise<void> {
+    return this.transactionsService.deleteTransaction(id);
   }
 }

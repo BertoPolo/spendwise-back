@@ -2,10 +2,12 @@ import { Module } from '@nestjs/common';
 import { TransactionsController } from './transactions.controller';
 import { TransactionsService } from './transactions.service';
 import { EmailModule } from '../email/email.module';
+import { TransactionsRepository } from './repositories/transactions.repository';
+import { TransactionsGateway } from './transactions.gateway';
 
 @Module({
   imports: [EmailModule],
   controllers: [TransactionsController],
-  providers: [TransactionsService],
+  providers: [TransactionsService, TransactionsRepository, TransactionsGateway],
 })
 export class TransactionsModule {}

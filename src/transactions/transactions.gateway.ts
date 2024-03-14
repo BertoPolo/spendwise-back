@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
   SubscribeMessage,
-  MessageBody,
   WebSocketGateway,
   WebSocketServer,
   OnGatewayConnection,
@@ -30,11 +29,8 @@ export class TransactionsGateway implements OnGatewayConnection {
     this.sendTransactionsToAllClients();
   }
 
-  // @SubscribeMessage('transactions')
-  // async handleTransactions(@MessageBody() transactionData: any) {
-  //   this.sendTransactionsToAllClients();
-  // }
   @SubscribeMessage('transactions')
+  // async handleTransactions(@MessageBody() transactionData: any) {
   async handleTransactions() {
     this.sendTransactionsToAllClients();
   }

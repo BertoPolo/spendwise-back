@@ -1,9 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
 import { SendEmailDto } from './email.interface';
-// import { emailQueue } from './email.queue';
-// import { Processor, WorkerHost, OnWorkerEvent } from '@nestjs/bullmq';
-// import { Job } from 'bullmq';
 
 @Injectable()
 export class EmailService {
@@ -40,8 +37,4 @@ export class EmailService {
       console.error(error);
     }
   }
-
-  // async queueEmailToSend(dto: SendEmailDto) {
-  //   await emailQueue.add('emailQueue', dto);
-  // }
 }
