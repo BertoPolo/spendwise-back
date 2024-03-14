@@ -29,6 +29,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/platform-socket.io": "^10.3.3",
     "@nestjs/websockets": "^10.3.3",
+    "bee-queue": "^1.7.1",
     "bull": "^4.12.2",
     "bullmq": "^5.4.2",
     "class-transformer": "^0.5.1",
