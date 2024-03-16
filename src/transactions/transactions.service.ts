@@ -35,7 +35,7 @@ export class TransactionsService {
 
     const createdTransaction =
       await this.transactionsRepository.create(newTransaction);
-    await this.checkAndNotifyNegativeBalance();
+    await this.enqueueEmailIfNegativeBalance();
     return createdTransaction;
   }
 
@@ -47,13 +47,13 @@ export class TransactionsService {
       id,
       transactionUpdate,
     );
-    await this.checkAndNotifyNegativeBalance();
+    await this.enqueueEmailIfNegativeBalance();
     return updatedTransaction;
   }
 
   async deleteTransaction(id: string): Promise<void> {
     await this.transactionsRepository.delete(id);
-    await this.checkAndNotifyNegativeBalance();
+    await this.enqueueEmailIfNegativeBalance();
   }
 
   async getTotal() {
@@ -61,7 +61,7 @@ export class TransactionsService {
     return transactions.reduce((acc, { amount }) => acc + amount, 0);
   }
 
-  async checkAndNotifyNegativeBalance() {
+  async enqueueEmailIfNegativeBalance() {
     const transactions = await this.getTransactions();
     const totalBalance = transactions.reduce(
       (acc, transaction) => acc + transaction.amount,

@@ -15,6 +15,7 @@ export class EmailQueueService {
       },
     });
 
+    //when job is in queue, this is triggered
     this.emailQueue.process(async (job, done) => {
       try {
         await this.emailService.sendNegativeBalanceEmail(job.data);
@@ -25,7 +26,7 @@ export class EmailQueueService {
       }
     });
   }
-
+  //add task to MQ
   addEmailJob(emailJobData: SendEmailDto) {
     this.emailQueue.createJob(emailJobData).save();
   }
