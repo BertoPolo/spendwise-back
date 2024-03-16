@@ -5,15 +5,6 @@
     "amount": -3.5
   },
   {
-    "description": "Coffee",
-    "amount": -3.5
-  },
-  {
-    "description": "Bike",
-    "amount": -100,
-    "id": "5g14j6ple6i"
-  },
-  {
     "id": "03t2pn3hetio",
     "description": "Freelance Project",
     "amount": 500
@@ -22,5 +13,10 @@
     "id": "ty8a9ayz4dn",
     "description": "Team Dinner",
     "amount": -300
+  },
+  {
+    "id": "woqm9eu1uoe",
+    "description": "asd",
+    "amount": -500
   }
 ]
